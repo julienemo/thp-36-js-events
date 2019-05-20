@@ -52,3 +52,23 @@ function toggleColor(){
 }
 
 editBtn2.addEventListener("click",toggleColor);
+
+
+// function 5
+// looking for a more elegant way.....
+let navBar = document.getElementsByTagName("header")[0];
+let targetLink = document.getElementsByTagName("link")[0];
+console.log(targetLink);
+console.log(navBar);
+let alreadyDisactivated = false;
+
+function toggleBootstrap(){
+  if (alreadyDisactivated){
+    targetLink.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+    alreadyDisactivated = false;
+  }else{
+    targetLink.href = "";
+    alreadyDisactivated = true;
+  }
+}
+navBar.addEventListener("dblclick",toggleBootstrap);
