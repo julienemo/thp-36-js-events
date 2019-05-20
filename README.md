@@ -8,4 +8,6 @@ second attempt to JS of Julie KWOK
 
 * func 4: console unnecessary. Click on the edit button of second card, card text turns green. Click again to go back to original.
 
-* func 5: console unnecessary. Doule click on the header, CSS disapprears. Doule click again to go back to original.
+* func 5: console unnecessary. Double click on the header, CSS disappears. Double click again to go back to original.
+
+* func 6: console unnecessary. Fly over any "view" button with mouse, card will reduce. FLy over again to go back to original.

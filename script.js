@@ -58,8 +58,6 @@ editBtn2.addEventListener("click",toggleColor);
 // looking for a more elegant way.....
 let navBar = document.getElementsByTagName("header")[0];
 let targetLink = document.getElementsByTagName("link")[0];
-console.log(targetLink);
-console.log(navBar);
 let alreadyDisactivated = false;
 
 function toggleBootstrap(){
@@ -72,3 +70,27 @@ function toggleBootstrap(){
   }
 }
 navBar.addEventListener("dblclick",toggleBootstrap);
+
+
+// function 6
+// looking for a more elegant way.....
+
+let viewBtns = document.getElementsByClassName('btn-success');
+let cards = document.getElementsByClassName("card-text");
+let images = document.getElementsByClassName('card-img-top');
+let hover = false;
+
+for(let i = 0; i < viewBtns.length; i++){
+  viewBtns[i].addEventListener("mouseover", function(){
+    if(hover){
+      cards[i].style= "";
+      images[i].style = "";
+      hover = false;
+
+    } else {
+      cards[i].style= "visibility:hidden";
+      images[i].style = "width:20%;";
+      hover = true;
+    }
+  })
+}
