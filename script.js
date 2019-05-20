@@ -81,10 +81,10 @@ for(let i = 0; i < cards.length; i++){
   viewBtn = cards[i].getElementsByClassName("btn-success")[0];
   image = cards[i].getElementsByClassName("card-img-top")[0];
   text = cards[i].getElementsByClassName("card-text")[0];
-  console.log(viewBtn);
-  console.log(image);
-  console.log(cards[i]);
-  console.log(text);
+  //console.log(viewBtn);
+  //console.log(image);
+  //console.log(cards[i]);
+  //console.log(text);
   viewBtn.addEventListener("mouseover", function(){
     if(hover){
       text.style= "";
@@ -113,7 +113,7 @@ switchBtn1.addEventListener("click",switchCards);
 // function 8
 //
 let switchBtn2 = document.getElementsByClassName("my-2")[0];
-console.log(switchBtn2);
+//console.log(switchBtn2);
 function switch2(){
   this.style = "pointer-events: none;cursor: default;";
 }
