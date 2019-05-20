@@ -20,14 +20,35 @@ btn.addEventListener("click", drop);
 
 
 // function 3
-let editBtn = document.querySelector(".btn-outline-secondary");
-var targetCard = document.querySelector(".card-text");
+let editBtn1 = document.querySelector(".btn-outline-secondary");
+var targetCard1 = document.querySelector(".card-text");
 
 // attempted to put target in the brackets
 // which means func will have brackets when called
 // which triggers automatically
 // so....didn't work out
 function turnTextToRed(){
-  targetCard.style.color = 'red';
+  targetCard1.style.color = 'red';
 }
-editBtn.addEventListener("click",turnTextToRed);
+editBtn1.addEventListener("click",turnTextToRed);
+
+
+// function 4
+let editBtn2 = document.getElementsByClassName("btn-outline-secondary")[1];
+var targetCard2 = document.getElementsByClassName("card-text")[1];
+var alreadyGreen = false;
+
+// this gets quickly confusing
+// make sure the conditions match the action
+// make sure the true and false be where they should
+function toggleColor(){
+  if (alreadyGreen){
+    targetCard2.style.color = '';
+    alreadyGreen = false;
+  } else {
+    targetCard2.style.color = 'green';
+    alreadyGreen = true;
+  }
+}
+
+editBtn2.addEventListener("click",toggleColor);
