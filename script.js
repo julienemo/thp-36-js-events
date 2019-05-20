@@ -74,23 +74,38 @@ navBar.addEventListener("dblclick",toggleBootstrap);
 
 // function 6
 // looking for a more elegant way.....
+let cards = document.getElementsByClassName("col-md-4");
 
-let viewBtns = document.getElementsByClassName('btn-success');
-let cards = document.getElementsByClassName("card-text");
-let images = document.getElementsByClassName('card-img-top');
-let hover = false;
-
-for(let i = 0; i < viewBtns.length; i++){
-  viewBtns[i].addEventListener("mouseover", function(){
+for(let i = 0; i < cards.length; i++){
+  let hover = false;
+  viewBtn = cards[i].getElementsByClassName("btn-success")[0];
+  image = cards[i].getElementsByClassName("card-img-top")[0];
+  text = cards[i].getElementsByClassName("card-text")[0];
+  console.log(viewBtn);
+  console.log(image);
+  console.log(cards[i]);
+  console.log(text);
+  viewBtn.addEventListener("mouseover", function(){
     if(hover){
-      cards[i].style= "";
-      images[i].style = "";
+      text.style= "";
+      image.style = "";
       hover = false;
 
     } else {
-      cards[i].style= "visibility:hidden";
-      images[i].style = "width:20%;";
+      text.style= "visibility:hidden";
+      image.style = "width:20%;";
       hover = true;
     }
   })
 }
+
+
+// function 7
+// no, didn't manage to fix the lag T_T
+let switchBtn = document.getElementsByClassName("my-2")[1];
+let album = document.getElementsByClassName("row")[1];
+function switchCards(){
+  album.insertBefore(cards[cards.length-1], cards[0]);
+}
+
+switchBtn.addEventListener("click",switchCards);
