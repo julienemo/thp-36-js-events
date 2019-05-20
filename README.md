@@ -1,5 +1,10 @@
 second attempt to JS of Julie KWOK
 
+
+To visualize result, go to
+https://julienemo.github.io/thp-36-js-events/
+
+
 * func 1: turn on console, click on footer. console will display number of clicks one by none
 
 * funt 2: console unnecessary. Click on hamburger button on header once, a whole menu will appear from top. Click again, that menu disappears

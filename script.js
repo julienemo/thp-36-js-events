@@ -102,10 +102,19 @@ for(let i = 0; i < cards.length; i++){
 
 // function 7
 // no, didn't manage to fix the lag T_T
-let switchBtn = document.getElementsByClassName("my-2")[1];
+let switchBtn1 = document.getElementsByClassName("my-2")[1];
 let album = document.getElementsByClassName("row")[1];
 function switchCards(){
   album.insertBefore(cards[cards.length-1], cards[0]);
 }
 
-switchBtn.addEventListener("click",switchCards);
+switchBtn1.addEventListener("click",switchCards);
+
+// function 8
+//
+let switchBtn2 = document.getElementsByClassName("my-2")[0];
+console.log(switchBtn2);
+function switch2(){
+  this.style = "pointer-events: none;cursor: default;";
+}
+switchBtn2.onclick = switch2;
