@@ -27,6 +27,9 @@ var targetCard1 = document.querySelector(".card-text");
 // which means func will have brackets when called
 // which triggers automatically
 // so....didn't work out
+// seems that the way to go is pass a params in brackets as event trigger
+// then pass the func in event handler WITHOUT brackets and with ,false mention
+// though don't really understand -_-!
 function turnTextToRed(){
   targetCard1.style.color = 'red';
 }
@@ -55,66 +58,82 @@ editBtn2.addEventListener("click",toggleColor);
 
 
 // function 5
-// looking for a more elegant way.....
 let navBar = document.getElementsByTagName("header")[0];
 let targetLink = document.getElementsByTagName("link")[0];
-let alreadyDisactivated = false;
-
+// so far I understood only a link tag can be disabled
+// whereas an href can't apply disabled method
 function toggleBootstrap(){
-  if (alreadyDisactivated){
-    targetLink.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
-    alreadyDisactivated = false;
-  }else{
-    targetLink.href = "";
-    alreadyDisactivated = true;
+  if (targetLink.disabled === true){
+    targetLink.disabled = false;
+  } else {
+    targetLink.disabled = true;
   }
 }
+
 navBar.addEventListener("dblclick",toggleBootstrap);
 
 
 // function 6
-// looking for a more elegant way.....
-let cards = document.getElementsByClassName("col-md-4");
+// the following won't be messed up by card mouvements
+// I understood that, since JS pass certains things by value and others by reference
+// traditional iteration with index results in index being passed by value
+// and other stuff by reference
+// so the solution is NOT USING index
+// simple collection iteration such as foreach
+// or more complicated logics such as, finding the button by index
+// and other stuff by parentElement
+// make things work
+function hideCard(btn){
+  var card = btn.target.closest('.card');
+  var image = card.getElementsByClassName("card-img-top")[0];
+  var text = card.getElementsByClassName("card-text")[0];
+  var hover = text.style.visibility == 'hidden'
 
-for(let i = 0; i < cards.length; i++){
-  let hover = false;
-  viewBtn = cards[i].getElementsByClassName("btn-success")[0];
-  image = cards[i].getElementsByClassName("card-img-top")[0];
-  text = cards[i].getElementsByClassName("card-text")[0];
-  //console.log(viewBtn);
-  //console.log(image);
-  //console.log(cards[i]);
-  //console.log(text);
-  viewBtn.addEventListener("mouseover", function(){
-    if(hover){
-      text.style= "";
-      image.style = "";
-      hover = false;
-
-    } else {
-      text.style= "visibility:hidden";
-      image.style = "width:20%;";
-      hover = true;
-    }
-  })
+  if(hover){
+    text.style= "";
+    image.style = "";
+    hover = false;
+  } else {
+    text.style= "visibility:hidden";
+    image.style = "width:20%;";
+    hover = true;
+  }
 }
 
+let buttons = document.getElementsByClassName("btn-success");
+for(let i = 0; i < buttons.length; i++){
+  var viewBtn = buttons[i];
+  // and note that we CAN pass argument in event handler funcs with brackets
+  // don't know clearly how that works out but
+  // when the argement is the event trigger
+  // and when func defined with arg but passed without
+  // and followed by false, it works...
+  viewBtn.addEventListener("mouseover", hideCard, false)
+}
 
-// function 7
+//* function 7
 // no, didn't manage to fix the lag T_T
+let blocks = document.getElementsByClassName("col-md-4");
+
 let switchBtn1 = document.getElementsByClassName("my-2")[1];
 let album = document.getElementsByClassName("row")[1];
 function switchCards(){
-  album.insertBefore(cards[cards.length-1], cards[0]);
+  album.insertBefore(blocks[blocks.length-1], blocks[0]);
 }
 
 switchBtn1.addEventListener("click",switchCards);
 
+
 // function 8
-//
-let switchBtn2 = document.getElementsByClassName("my-2")[0];
-//console.log(switchBtn2);
-function switch2(){
-  this.style = "pointer-events: none;cursor: default;";
+// note there is a difference between disabling a link tag
+// and disabling the href of an a tag
+// for the former, a simple disabled = true
+// for the latter, need to removeAttribute("href")
+let switchBtn2 = document.getElementsByClassName("btn-primary")[0];
+let externalLink = document.getElementsByTagName("a")[4]
+externalLink.removeAttribute("href");
+function switchBack(){
+  album.insertBefore(blocks[0], blocks[blocks.length]);
 }
-switchBtn2.onclick = switch2;
+// note how it is possible to insert before a fictive "last element" that doesn't exist
+switchBtn2.addEventListener("click",switchBack);
